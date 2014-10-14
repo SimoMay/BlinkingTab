@@ -7,7 +7,7 @@
         BlinkingTab = function (options) {
             // Define option defaults
             var defaults = {
-                autoStart: true, // set it to false if you don't want to autoStart the plugin (for example if you wish to activate the functionality later)
+                autoStart: true, // set it to false if you don't want to autoStart the plugin (for example if you wish to activate the functionality later by calling BlinkingTab.start())
 
                 titleBlink_1: 'NEW TITLE -- NEW TITLE', // the first title will that show when blinking
                 titleBlink_2: '****', // the second title that will show when blinking
