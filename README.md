@@ -10,6 +10,7 @@ BlinkingTab is a Javascript plugin allow you to bring visitors back to your site
   - Many options to play with...
   - Open source & under MIT License :)
 
+[http://crazygentleman.github.io/BlinkingTab]
 
 Installation
 --------------
@@ -118,3 +119,4 @@ SOFTWARE.
 
 [Paypal]:https://scansfer.com/pp_post_redirect.php?p=Y3JhenlnZW50bGVtYW4xMkBnbWFpbC5jb218TW9oYW1lZCBBaG1lZCBGb3VhZHx8fFVTRHx8fE1BfF9kb25hdGlvbnM=
 [Flattr]:https://flattr.com/thing/fc6cc6788a2920763a1eab648e9a4288
+[http://crazygentleman.github.io/BlinkingTab]:http://crazygentleman.github.io/BlinkingTab
