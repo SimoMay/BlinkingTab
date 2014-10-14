@@ -8,7 +8,7 @@
 
         // Define option defaults
         var defaults = {
-            autoOpen: ture
+            autoOpen: true
         }
 
         // Create options by extending defaults with the passed in arugments
