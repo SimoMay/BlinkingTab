@@ -50,8 +50,7 @@
         visibilityChange = "webkitvisibilitychange";
     }
 
-    // If the page is hidden, pause the video;
-    // if the page is shown, play the video
+    // Handle page visibility change
     function handleVisibilityChange() {
         if (document[hidden]) {
             document.title = 'Not visible';
@@ -62,7 +61,7 @@
 
     function initializeEvents() {
 
-        // Handle page visibility change
+        // Event to detect visibility change
         document.addEventListener(visibilityChange, handleVisibilityChange, false);
 
     }
