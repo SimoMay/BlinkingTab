@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>BlinkingTab by CrazyGentleMan</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>BlinkingTab</h1>
+        <p>Javascript plugin allow you to bring visitors back to your site by blinking the tab title</p>
+        <p class="view"><a href="https://github.com/CrazyGentleMan/BlinkingTab">View the Project on GitHub <small>CrazyGentleMan/BlinkingTab</small></a></p>
+        <ul>
+          <li><a href="https://github.com/CrazyGentleMan/BlinkingTab/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/CrazyGentleMan/BlinkingTab/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/CrazyGentleMan/BlinkingTab">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="blinkingtab" class="anchor" href="#blinkingtab"><span class="octicon octicon-link"></span></a>BlinkingTab</h1>
+
+<p>BlinkingTab is a Javascript plugin allow you to bring visitors back to your site by blinking the tab title.</p>
+
+<ul>
+<li>Easy to setup</li>
+<li>Bring back visitors to you website (== Money ==)</li>
+<li>Doesn't need JQuery to work</li>
+<li>Actually it doesn't require any other plugins</li>
+<li>Many options to play with...</li>
+<li>Open source &amp; under MIT License :)</li>
+</ul>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Download <em>blinkingtab.js</em> file to your website's root path and then add the script at the bottom of the page you wish to activate the Blinking Tab to, before the <em>&lt; /body&gt;</em> tag:</p>
+
+<div class="highlight highlight-html"><pre>...
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"blinkingtab.js"</span> <span class="na">type=</span><span class="s">"application/javascript"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span> <span class="nx">BlinkingTab</span><span class="p">();</span> <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</pre></div>
+
+<p>That's it :D</p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>In order to set configuration to the plugin you can define one/many of the variables (mentioned below) inside the <strong>BlinkingTab()</strong>, for example:</p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;script&gt;</span> <span class="nx">BlinkingTab</span><span class="p">({</span>
+    <span class="nx">titleBlink_1</span><span class="o">:</span> <span class="s1">'-- NEW TITLE -- '</span><span class="p">,</span>
+    <span class="nx">delayBeforeBlinkingSeconds</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span> 
+    <span class="p">...</span>
+<span class="p">});</span> <span class="nt">&lt;/script&gt;</span>
+</pre></div>
+
+<h2>
+<a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
+
+<p>Here's a list of the variables you can define:</p>
+
+<blockquote>
+<p><strong>autoStart</strong> : (true|false) by default it's set to true, set it to false if you don't want to autoStart the plugin (for example if you wish to activate the functionality later by calling <em>BlinkingTab.start();</em>)</p>
+
+<p><strong>titleBlink_1</strong> : (string) the first title that will be seen when blinking the tab title</p>
+
+<p><strong>titleBlink_2</strong> : (string) the second title that will be seen when blinking the tab title</p>
+
+<p><strong>titleWhenTabActive</strong> : (string) by default it takes the current title of the page, the title that will set when the user come back to your website again <em>[require revertToPreviousTitle: true]</em></p>
+
+<p><strong>revertToPreviousTitle</strong> : (true|false) by default it's set false, set it to true if you wish to revert to another title when the user come back to your website again</p>
+
+<p><strong>delayBeforeBlinkingSeconds</strong> : (seconds) by default it's set 2, How much time (in seconds) before the title start blinking</p>
+
+<p><strong>blinkIntervalSeconds</strong> : (seconds) by default it's set 0.5, Interval of blinking between the first title (titleBlink_1) &amp; the second (titleBlink_2)  <em>[require blinkTitle: true]</em></p>
+
+<p><strong>blinkTitle</strong> : (true|false) by default it's set true. True: will blink the title | False: will simply replace the title with titleBlink_1 when the user is inactive</p>
+
+<p><strong>redirectWhenActive</strong> : (true|false) by default it's set false, set it to true if you wish to redirect your visitors to another URL when they return to your website</p>
+
+<p><strong>redirectURL</strong> : (string) the redirection URL <em>[require redirectWhenActive: true]</em></p>
+
+<p><strong>animateTitle</strong> : (true|false) ... Coming soon</p>
+</blockquote>
+
+<h2>
+<a name="tested-browsers" class="anchor" href="#tested-browsers"><span class="octicon octicon-link"></span></a>Tested Browsers</h2>
+
+<ul>
+<li>Chrome </li>
+<li>... will test it in more browsers soon</li>
+</ul>
+
+<h2>
+<a name="support-me" class="anchor" href="#support-me"><span class="octicon octicon-link"></span></a>Support Me</h2>
+
+<p>Please donate to me via Paypal or Flattr. </p>
+
+<p>I will graciously accept any donations, but because of the Paypal and Flattr fees, may I suggest you to give at least 5 $ or 5 euros. 
+It is little bit more than a cafe but will be tremendously helpful. </p>
+
+<p>Thanks a million, greatly appreciated.</p>
+
+<ul>
+<li>
+<a href="https://scansfer.com/pp_post_redirect.php?p=Y3JhenlnZW50bGVtYW4xMkBnbWFpbC5jb218TW9oYW1lZCBBaG1lZCBGb3VhZHx8fFVTRHx8fE1BfF9kb25hdGlvbnM=">Paypal</a> - Donate via Paypal</li>
+<li>
+<a href="https://flattr.com/thing/fc6cc6788a2920763a1eab648e9a4288">Flattr</a> - Donate via Flattr</li>
+</ul>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>The MIT License (MIT)</p>
+
+<p><strong>Free Software, Hell Yeah!</strong></p>
+
+<p>Copyright (c) 2014 Mohamed Ahmed Fouad</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</p>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/CrazyGentleMan">CrazyGentleMan</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-28158075-2");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
