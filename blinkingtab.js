@@ -1,81 +1,80 @@
-// Create an immediately invoked functional expression to wrap our code
+/**
+ * Created by Mohamed on 6/23/14.
+ */
+
 (function () {
+    if (typeof BlinkingTab === 'undefined') {
+        BlinkingTab = function (options) {
+            var defaults = {
+                autoStart: true,
+                titleWhenNotVisible: 'Not visible',
+                titleWhenVisible: 'Visible'
+            };
 
-    // Define our constructor
-    this.BlinkingTab = function () {
-        // Create global element references
-        this.modal = null;
+            BlinkingTab.settings = BlinkingTab.extendDefaults(defaults, options);
 
-        // Define option defaults
-        var defaults = {
-            autoStart: true
-        }
+            var hidden, visibilityChange;
+            if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support
+                hidden = "hidden";
+                visibilityChange = "visibilitychange";
+            } else if (typeof document.mozHidden !== "undefined") {
+                hidden = "mozHidden";
+                visibilityChange = "mozvisibilitychange";
+            } else if (typeof document.msHidden !== "undefined") {
+                hidden = "msHidden";
+                visibilityChange = "msvisibilitychange";
+            } else if (typeof document.webkitHidden !== "undefined") {
+                hidden = "webkitHidden";
+                visibilityChange = "webkitvisibilitychange";
+            }
+            BlinkingTab.settings.visibilityChange = visibilityChange;
+            BlinkingTab.settings.hidden = hidden;
 
-        // Create options by extending defaults with the passed in arugments
-        if (arguments[0] && typeof arguments[0] === "object") {
-            this.options = extendDefaults(defaults, arguments[0]);
-        }
-
-        // start automatically when instantiated
-        if (this.options.autoStart === true) this.start();
+            // start automatically when instantiated
+            if (BlinkingTab.settings.autoStart === true) BlinkingTab.start();
+        };
     }
 
-    // Public Methods
-
-    BlinkingTab.prototype.start = function () {
-        // Warn if the browser doesn't support addEventListener or the Page Visibility API
-        if (typeof document.addEventListener === "undefined" ||
-            typeof document[hidden] === "undefined") {
-            console.log("This demo requires a browser, such as Google Chrome or Firefox, that supports the Page Visibility API.");
-        } else {
-            initializeEvents.call();
-        }
-    }
-
-    // Private Methods
-
-    // Set the name of the hidden property and the change event for visibility
-    var hidden, visibilityChange;
-    if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support
-        hidden = "hidden";
-        visibilityChange = "visibilitychange";
-    } else if (typeof document.mozHidden !== "undefined") {
-        hidden = "mozHidden";
-        visibilityChange = "mozvisibilitychange";
-    } else if (typeof document.msHidden !== "undefined") {
-        hidden = "msHidden";
-        visibilityChange = "msvisibilitychange";
-    } else if (typeof document.webkitHidden !== "undefined") {
-        hidden = "webkitHidden";
-        visibilityChange = "webkitvisibilitychange";
-    }
-
-    // Handle page visibility change
-    function handleVisibilityChange() {
-        if (document[hidden]) {
-            document.title = 'Not visible';
-        } else {
-            document.title = 'Visible';
+    if (typeof BlinkingTab.start === 'undefined') {
+        BlinkingTab.start = function () {
+            // Warn if the browser doesn't support addEventListener or the Page Visibility API
+            if (typeof document.addEventListener === "undefined" ||
+                typeof document[BlinkingTab.settings.hidden] === "undefined") {
+                console.log("This demo requires a browser, such as Google Chrome or Firefox, that supports the Page Visibility API.");
+            } else {
+                BlinkingTab.initializeEvents.call();
+            }
         }
     }
 
-    function initializeEvents() {
+    if (typeof BlinkingTab.initializeEvents === 'undefined') {
+        BlinkingTab.initializeEvents = function () {
+            // Event to detect visibility change
+            document.addEventListener(BlinkingTab.settings.visibilityChange, BlinkingTab.handleVisibilityChange, false);
+        };
+    }
 
-        // Event to detect visibility change
-        document.addEventListener(visibilityChange, handleVisibilityChange, false);
-
+    if (typeof BlinkingTab.handleVisibilityChange === 'undefined') {
+        BlinkingTab.handleVisibilityChange = function () {
+            if (document[BlinkingTab.settings.hidden]) {
+                document.title = BlinkingTab.settings.titleWhenNotVisible;
+            } else {
+                document.title = BlinkingTab.settings.titleWhenVisible;
+            }
+        }
     }
 
     // Utility method to extend defaults with user options
-    function extendDefaults(source, properties) {
-        var property;
-        for (property in properties) {
-            if (properties.hasOwnProperty(property)) {
-                source[property] = properties[property];
+    if (typeof BlinkingTab.extendDefaults === 'undefined') {
+        BlinkingTab.extendDefaults = function (source, properties) {
+            var property;
+            for (property in properties) {
+                if (properties.hasOwnProperty(property)) {
+                    source[property] = properties[property];
+                }
             }
+            return source;
         }
-        return source;
     }
 
-}());
-
+})();
