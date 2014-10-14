@@ -8,7 +8,7 @@
 
         // Define option defaults
         var defaults = {
-            autoOpen: true
+            autoStart: true
         }
 
         // Create options by extending defaults with the passed in arugments
@@ -16,13 +16,13 @@
             this.options = extendDefaults(defaults, arguments[0]);
         }
 
-        // open automatically when instantiated
-        if (this.options.autoOpen === true) this.open();
+        // start automatically when instantiated
+        if (this.options.autoStart === true) this.start();
     }
 
     // Public Methods
 
-    BlinkingTab.prototype.open = function () {
+    BlinkingTab.prototype.start = function () {
         // Warn if the browser doesn't support addEventListener or the Page Visibility API
         if (typeof document.addEventListener === "undefined" ||
             typeof document[hidden] === "undefined") {
