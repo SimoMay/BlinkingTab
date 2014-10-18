@@ -3,13 +3,250 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Blinking Tab demos</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url(http://mymaplist.com/img/parallax/back.png);
+            background-color: #444;
+            background: url(http://mymaplist.com/img/parallax/pinlayer2.png), url(http://mymaplist.com/img/parallax/pinlayer1.png), url(http://mymaplist.com/img/parallax/back.png);
+        }
+
+        .vertical-offset-100 {
+            padding-top: 100px;
+        }
+    </style>
 </head>
 <body>
-<h1>Please Go to a different tab to see it happen - there is nothing on the page</h1>
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.map"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="javascripts/blinkingtab.js" type="application/javascript"></script>
+<script src="http://mymaplist.com/js/vendor/TweenLite.min.js"></script>
+<!-- This is a very simple parallax effect achieved by simple CSS 3 multiple backgrounds, made by http://twitter.com/msurguy -->
+
+<div class="container">
+    <div class="row vertical-offset-100">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">BlinkingTab Configuration</h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal">
+                        <fieldset>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="titleBlink_1">titleBlink_1</label>
+
+                                <div class="col-md-6">
+                                    <input id="titleBlink_1" name="titleBlink_1" type="text"
+                                           placeholder="the first title"
+                                           class="form-control input-md" required="">
+                                    <span class="help-block">the first title will that show when blinking</span>
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="titleBlink_2">titleBlink_2</label>
+
+                                <div class="col-md-6">
+                                    <input id="titleBlink_2" name="titleBlink_2" type="text"
+                                           placeholder="the second title"
+                                           class="form-control input-md" required="">
+                                    <span class="help-block">the second title that will show when blinking</span>
+                                </div>
+                            </div>
+
+                            <!-- Multiple Radios (inline) -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="blinkTitle">blinkTitle</label>
+
+                                <div class="col-md-4">
+                                    <label class="radio-inline" for="blinkTitle-0">
+                                        <input type="radio" name="blinkTitle" id="blinkTitle-0" value="true"
+                                               checked="checked">
+                                        True
+                                    </label>
+                                    <label class="radio-inline" for="blinkTitle-1">
+                                        <input type="radio" name="blinkTitle" id="blinkTitle-1" value="false">
+                                        False
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Prepended text-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="delayBeforeBlinkingSeconds">delayBeforeBlinkingSeconds</label>
+
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">seconds</span>
+                                        <input id="delayBeforeBlinkingSeconds" name="delayBeforeBlinkingSeconds"
+                                               class="form-control"
+                                               placeholder="Time before the title start blinking" type="text">
+                                    </div>
+                                    <p class="help-block">How much time (in seconds) before the title start blinking</p>
+                                </div>
+                            </div>
+
+                            <!-- Prepended text-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label"
+                                       for="blinkIntervalSeconds">blinkIntervalSeconds</label>
+
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">seconds</span>
+                                        <input id="blinkIntervalSeconds" name="blinkIntervalSeconds"
+                                               class="form-control"
+                                               placeholder="Interval of blinking titles" type="text">
+                                    </div>
+                                    <p class="help-block">Interval of blinking between the first title (titleBlink_1) &
+                                        the second
+                                        (titleBlink_2)</p>
+                                </div>
+                            </div>
+
+                            <!-- Multiple Radios (inline) -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label"
+                                       for="revertToPreviousTitle">revertToPreviousTitle</label>
+
+                                <div class="col-md-4">
+                                    <label class="radio-inline" for="revertToPreviousTitle-0">
+                                        <input type="radio" name="revertToPreviousTitle" id="revertToPreviousTitle-0"
+                                               value="true"
+                                                >
+                                        True
+                                    </label>
+                                    <label class="radio-inline" for="revertToPreviousTitle-1">
+                                        <input type="radio" name="revertToPreviousTitle" id="revertToPreviousTitle-1"
+                                               value="false" checked="checked">
+                                        False
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label"
+                                       for="titleWhenTabActive">titleWhenTabActive</label>
+
+                                <div class="col-md-6">
+                                    <input id="titleWhenTabActive" name="titleWhenTabActive" type="text"
+                                           placeholder="the title when user come back" class="form-control input-md">
+                                    <span class="help-block">The title that will set when the user come back to your website again</span>
+                                </div>
+                            </div>
+
+                            <!-- Multiple Radios (inline) -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label"
+                                       for="redirectWhenActive">redirectWhenActive</label>
+
+                                <div class="col-md-4">
+                                    <label class="radio-inline" for="redirectWhenActive-0">
+                                        <input type="radio" name="redirectWhenActive" id="redirectWhenActive-0"
+                                               value="true">
+                                        True
+                                    </label>
+                                    <label class="radio-inline" for="redirectWhenActive-1">
+                                        <input type="radio" name="redirectWhenActive" id="redirectWhenActive-1"
+                                               value="false" checked="checked">
+                                        False
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="redirectURL">redirectURL</label>
+
+                                <div class="col-md-6">
+                                    <input id="redirectURL" name="redirectURL" type="text"
+                                           placeholder="the redirection URL"
+                                           class="form-control input-md">
+                                    <span class="help-block">if you wish to redirect your visitors to another URL when they return to your website</span>
+                                </div>
+                            </div>
+
+                            <!-- Button -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="RunBlinkingTab">Run BlinkingTab Demo</label>
+
+                                <div class="col-md-4">
+                                    <button id="RunBlinkingTab" name="RunBlinkingTab" class="btn btn-primary" onclick="startBlinkingTab();return false;">Run Demo
+                                    </button>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
-    BlinkingTab();
+    $(document).ready(function () {
+        $(document).mousemove(function (e) {
+            TweenLite.to($('body'),
+                    .5,
+                    {
+                        css: {
+                            backgroundPosition: "" + parseInt(event.pageX / 8) + "px " + parseInt(event.pageY / '12') + "px, " + parseInt(event.pageX / '15') + "px " + parseInt(event.pageY / '15') + "px, " + parseInt(event.pageX / '30') + "px " + parseInt(event.pageY / '30') + "px"
+                        }
+                    });
+        });
+        $('#titleBlink_1').val('--- NEW TITLE ---');
+        $('#titleBlink_2').val('*****');
+        $('#titleWhenTabActive').val(document.title);
+        $('#delayBeforeBlinkingSeconds').val(2);
+        $('#blinkIntervalSeconds').val(0.5);
+        $('#redirectURL').val('https://crazygentleman.github.io/BlinkingTab/');
+    });
+</script>
+<script>
+    function startBlinkingTab() {
+        var revertToPreviousTitle_value = true;
+        if($("input[name=revertToPreviousTitle]:checked").val() == "false")
+            revertToPreviousTitle_value = false;
+
+        var blinkTitle_value = true;
+        if($("input[name=blinkTitle]:checked").val() == "false")
+            blinkTitle_value = false;
+
+        var redirectWhenActive_value = true;
+        if($("input[name=redirectWhenActive]:checked").val() == "false")
+            redirectWhenActive_value = false;
+
+        BlinkingTab({
+            autoStart: true, // set it to false if you don't want to autoStart the plugin (for example if you wish to activate the functionality later by calling BlinkingTab.start())
+
+            titleBlink_1: $('#titleBlink_1').val(), // the first title will that show when blinking
+            titleBlink_2: $('#titleBlink_2').val(), // the second title that will show when blinking
+
+            titleWhenTabActive: $('#titleWhenTabActive').val(), // [require revertToPreviousTitle: true] the title that will set when the user come back to your website again
+            revertToPreviousTitle: revertToPreviousTitle_value, // set it to true if you wish to revert to another title when the user come back to your website again
+
+            delayBeforeBlinkingSeconds: $('#delayBeforeBlinkingSeconds').val(), // [require blinkTitle: true] How much time (in seconds) before the title start blinking
+            blinkIntervalSeconds: $('#blinkIntervalSeconds').val(), // [require blinkTitle: true] Interval of blinking between the first title (titleBlink_1) & the second (titleBlink_2)
+            blinkTitle: blinkTitle_value, // True: will blink the title | False: will simply replace the title with titleBlink_1 when the user is inactive
+
+            redirectWhenActive: redirectWhenActive_value, // set it to true if you wish to redirect your visitors to another URL when they return to your website
+            redirectURL: $('#redirectURL').val(), // [require redirectWhenActive: true] the redirection URL
+
+            animateTitle: true // coming soon
+        });
+
+
+        $('.panel-title').html('Please Go to a different tab to see it happen - there is nothing on the page (<a href="#" onclick="location.reload();" style="color: #0066cc">REFRESH DEMO</a>)');
+        $('.panel-body').hide();
+    }
 </script>
 </body>
 </html>
