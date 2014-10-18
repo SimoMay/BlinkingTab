@@ -10,7 +10,7 @@ BlinkingTab is a Javascript plugin allow you to bring visitors back to your site
   - Many options to play with...
   - Open source & under MIT License :)
 
-[http://crazygentleman.github.io/BlinkingTab]
+Checkout our Demo page: [http://crazygentleman.github.io/BlinkingTab/demo.html]
 
 Installation
 --------------
